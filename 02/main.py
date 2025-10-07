@@ -18,7 +18,7 @@ from pydantic import BaseModel
 class Item(BaseModel):
     name:str
     price:float 
-    is_offer: bool=False
+    is_offer: bool=True
 @app.post("/items/")
 def create_item(item:Item):
     return {"message":"Item crated","item":item}
