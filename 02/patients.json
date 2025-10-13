@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Rohit Sharma",
+    "city": "Mumbai",
+    "age": 29,
+    "gender": "Male",
+    "height_cm": 172,
+    "weight_kg": 68,
+    "bmi": 22.9,
+    "verdict": "Normal"
+  },
+  {
+    "name": "Priya Singh",
+    "city": "Delhi",
+    "age": 35,
+    "gender": "Female",
+    "height_cm": 158,
+    "weight_kg": 75,
+    "bmi": 30.0,
+    "verdict": "Obese"
+  },
+  {
+    "name": "Amit Kumar",
+    "city": "Bangalore",
+    "age": 24,
+    "gender": "Male",
+    "height_cm": 170,
+    "weight_kg": 52,
+    "bmi": 18.0,
+    "verdict": "Malnourished"
+  },
+  {
+    "name": "Neha Patel",
+    "city": "Ahmedabad",
+    "age": 40,
+    "gender": "Female",
+    "height_cm": 162,
+    "weight_kg": 72,
+    "bmi": 27.4,
+    "verdict": "Overweight"
+  },
+  {
+    "name": "Sanjay Verma",
+    "city": "Hyderabad",
+    "age": 32,
+    "gender": "Male",
+    "height_cm": 178,
+    "weight_kg": 92,
+    "bmi": 29.0,
+    "verdict": "Fatty"
+  }
+]
