@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from pydantic import BaseModel,EmailStr,AnyUrl,Field
+from pydantic import BaseModel,EmailStr,AnyUrl,Field,field_validator
 from typing import List,Dict,Optional,Annotated
 
 app=FastAPI()
@@ -13,7 +13,29 @@ class Patient(BaseModel):
     married:bool
     allergies: List[str]
     contact_details:Dict[str,str] #both key and value are string
-
+    
+    @field_validator('email')
+    @classmethod
+    def email_validator(cls,value):
+        valid_domains=['hdfc.com','icici.com']
+        domain_name=value.split('@')[-1]
+        if domain_name not in valid_domains:
+            raise ValueError("Not a valid domain")
+        return value
+        
+    @field_validator('name')
+    @classmethod
+    def transform_name(cls,value):
+        return value.upper()
+    
+    @field_validator('age',mode='after') # after send value after type conversion(str to int) and before sends before conversion
+    @classmethod
+    def age_validator(cls,value): #we will receive int value if it is str
+        if 0<value<1000:
+            return
+        else:
+            raise ValueError("Age should between 0 and 100")
+        
 class Item(BaseModel):
     name:str
     price:float
@@ -32,7 +54,7 @@ def create_item(item:Item):
 def AddPatient(patient:Patient):
     return {"name":patient.name,"age":patient.age}
 
-patient_info={"name":"John","age":30,"email":"abc@gmail.com","weight":83,"married":True,"allergies":["kidneystone"],"contact_details":{"phone":"4444343"}}
+patient_info={"name":"John Doe","age":'100',"email":"abc@hdfc.com","weight":83,"married":True,"allergies":["kidneystone"],"contact_details":{"phone":"4444343"}}
 
 #patient_info={"name":"John","age":"30"}
 
