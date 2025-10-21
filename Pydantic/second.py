@@ -10,9 +10,9 @@ class Patient(BaseModel):
     age:int=Field(ge=0,lt=150)
     linkedin_url:AnyUrl
     email:EmailStr
-    weight:float=Field(gt=0,lt=1000)
-    married:bool=False #default value
-    allergies: Optional[List[str]]=Field(max_length=5) #list of strings optional with default value None
+    weight:Annotated[float,Field(gt=0,lt=1000,strict=True)] #strict supressing type conversion meanns str("55") won't be changed to integer value
+    married:Annotated[bool,Field(default=None,description="Is the patient married or not")]
+    allergies: Annotated[str,Field(default=None,max_length=5)] #list of strings optional with default value None
     contact_details:Dict[str,str] #both key and value are string
 
 class Item(BaseModel):
@@ -39,9 +39,10 @@ patient_info={"name":"John","age":30,"email":"abc@gmail.com","linkedin_url":"htt
 
 patient1=Patient(**patient_info) # **->dictionary unpacking operator
 def insert_patient_data(patient:Patient):
-    print(patient.name)
-    print(patient.married)
-    print(patient.age)
+    print(f"Name= {patient.name}")
+    print(f"Married={patient.married}")
+    print(f"Age= {patient.age}")
+    print(f"Weight= {patient.weight}")
     print("Inserted")
     
 insert_patient_data(patient1)
