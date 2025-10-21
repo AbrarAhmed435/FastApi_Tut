@@ -35,6 +35,7 @@ def GetPatient(id:int=Path(...,description="id of patient(interger)",ge=0,le=100
     data=LoadPatient(id)
     return data
 
+
 @app.get('/sort')
 def sort_patient(sort_by:str=Query(...,description="Sort on the basis of height,weight,bmi"),order:str=Query('asc',description="Sort in asc or desc order")):
     valid_fields=['height_cm','weight_kg','bmi']
