@@ -44,44 +44,14 @@
         "id": 3
     },
     {
-        "name": "Sanjay Verma",
-        "city": "Hyderabad",
-        "age": 32,
-        "gender": "Male",
-        "height_cm": 178,
-        "weight_kg": 92,
-        "bmi": 29.0,
-        "verdict": "Fatty",
-        "id": 4
-    },
-    {
-        "name": "Abrar Riyaz",
-        "city": "Mumbai",
-        "age": 29,
-        "gender": "Male",
-        "height_cm": 172.0,
-        "weight_kg": 68.0,
-        "bmi": 22.99,
-        "verdict": "Normal"
-    },
-    {
-        "name": "Abrar ul Riyaz",
+        "name": "KALU KHATARNAK",
         "city": "Srinagar",
         "age": 22,
         "gender": "Male",
         "height_cm": 179.0,
         "weight_kg": 97.0,
         "bmi": 30.27,
-        "verdict": "Overweight"
-    },
-    {
-        "name": "Yahya",
-        "city": "srinagar",
-        "age": 17,
-        "gender": "male",
-        "height_cm": 175.0,
-        "weight_kg": 60.0,
-        "bmi": 19.59,
-        "verdict": "Normal"
+        "verdict": "Overweight",
+        "id": 4
     }
 ]

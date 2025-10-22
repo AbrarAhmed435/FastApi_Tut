@@ -57,7 +57,11 @@ def create_patient(patient:Patient):
     
     data=load_data()
     
+    
     patient_dict=patient.model_dump()
+    
+    new_id=get_new_id(data)
+    patient_dict["id"]=new_id
     
     data.append(patient_dict)
     
@@ -65,4 +69,29 @@ def create_patient(patient:Patient):
     return JSONResponse(status_code=201,content={"message":"Patient created Successfully"})
     
     
+@app.put("/update/{id}/")
+def update_patient(id:int, updated_patient:Patient):
+    data=load_data()
     
+    for index,patient in enumerate(data):
+        if patient["id"]==id:
+            updated_dict=updated_patient.model_dump()
+            updated_dict["id"]=id
+            data[index]=updated_dict
+            save_data(data)
+            return JSONResponse(status_code=200,content={"message":f"Pateint details updated"})
+    raise HTTPException(status_code=404,detail="Patient not found")
+
+
+@app.delete("/delete/{id}/")
+def delete_patient(id:int):
+    data=load_data()
+    
+    for index,patient in enumerate(data):
+        if patient["id"]==id:
+            deleted_patient=data.pop(index)
+            
+            save_data(data)
+            
+            return JSONResponse(status_code=200,content={"message":f"Patient deleted","deleted_patient":deleted_patient })
+    raise HTTPException(status_code=404,detail=f"patient not found ")
