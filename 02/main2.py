@@ -10,7 +10,7 @@ def load_data():
     return data
         
 def LoadPatient(id):
-    with open('patients.json','r') as f:
+    with open('../patients.json','r') as f:
         data=json.load(f)
         
     for patient in data:
