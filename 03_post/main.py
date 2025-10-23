@@ -8,7 +8,6 @@ from typing import Annotated,Literal
 app=FastAPI()
 
 class Patient(BaseModel):
-    
     name:Annotated[str,Field(...,description='Name of Patient')]
     city:Annotated[str,Field(...,description="City")] 
     age:Annotated[int,Field(...,gt=0,le=150,description="Age of Patient")]
@@ -47,8 +46,9 @@ def get_new_id(patients_list):
     existing_ids=[p['id'] for p in patients_list]
     return max(existing_ids)+1
 
+
 def save_data(patient_list):
-    with open('../patients.json','w') as f:
+    with open('../patients.json','w') as f: 
         json.dump(patient_list,f,indent=4)
 
 @app.post('/create/')
@@ -57,8 +57,7 @@ def create_patient(patient:Patient):
     
     data=load_data()
     
-    
-    patient_dict=patient.model_dump()
+    patient_dict=patient.model_dump() # computed fields are also dumped here
     
     new_id=get_new_id(data)
     patient_dict["id"]=new_id
