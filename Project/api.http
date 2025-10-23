@@ -1,0 +1,12 @@
+POST http://127.0.0.1:8000/predict/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "age": 29,
+  "weight": 175,
+  "height": 1.8,
+  "income_lpa": 1,
+  "smoker": true,
+  "city": "Srinagar",
+  "occupation": "freelancer"
+}
