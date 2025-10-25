@@ -101,7 +101,7 @@ async def process_image(file:UploadFile=File(...)):
 #VALIDATE FILE TYPES
 MAX_FILE_SIZE=10*1024*1024 #10MB
 
-@app.post('/secure-upload/')
+# @app.post('/secure-upload/')
 async def secure_upload(file:UploadFile=File(...)):
     
     if file.content_type not in ('application/pdf','image/jpeg','image/png'):
@@ -115,7 +115,7 @@ async def secure_upload(file:UploadFile=File(...)):
             raise HTTPException(status_code=413,detail="File too large")
         chunk = await file.read(1024*1024)
     await file.seek(0) ## file pointer moved back to begining
-
+    return size
     #then procede
     
 
@@ -125,13 +125,14 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 
+
 load_dotenv()
 
 client=OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
-def prompt_ai(text:str):
-    
+def prompt_ai(text:str,retries:int=2):
+    import time
     messages=[
         {
             "role":"system",
@@ -142,21 +143,63 @@ def prompt_ai(text:str):
         "content":f"Here is the text{text}"
         }
     ]
-    try:
-        response=client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=messages,
-        )
-        summary=response.choices[0].message.content 
-        
-        return JSONResponse(status_code=200,content={
-            "summary":summary
-        })
-    except Exception as e:
-        print("OpneAI Error",e)
-        return JSONResponse(status_code=500,content={"error":str{e}})
-        
+    for attempt in range(retries+1):
+        try:
+            response=client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=messages,
+            )
+            summary=response.choices[0].message.content 
+            return summary
+            
+            # return JSONResponse(status_code=200,content={
+            #     "summary":summary
+            # })
+        except Exception as e:
+            if attempt< retries:
+                time.sleep(1)
+                continue
+            print("OpneAI Error",e)
+            
+            return f"Error: {str(e)}"
 
-@api.post('/summarize_doc/')
-def summarize_doc()
-        
+@app.post('/summarize_doc/')
+async def summarize_doc(file:UploadFile=File(...)):
+    import time
+    start=time.time()
+    size=await secure_upload(file)
+    
+    import PyPDF2
+    contents=await file.read()
+    
+    from io import BytesIO
+    reader=PdfReader(BytesIO(contents))
+    
+    # text_chunks=[]
+    # for page in reader.pages:
+    #     text+=page.extract_text()
+    #     if text:
+    #         text_chunks.append(text)
+    # text=" ".join(text_chunks)
+    text_chunks=[page.extract_text() or "" for page in reader.pages]
+    text=" ".join(text_chunks) # put space between each chunk
+    
+    summary=prompt_ai(text)
+    summary=summary.strip().replace('\n'," ")
+    elapsed=round(time.time()-start,2)
+    
+    if summary.startswith("Error:"):
+        raise HTTPException(status_code=500,detail=summary)
+    
+    return JSONResponse(status_code=200,content={
+        "filename":file.filename,
+        "summary":summary,
+        "size":size,
+        "processing_time":f"{elapsed}s"
+    })
+    
+    
+    
+    
+    
+    
