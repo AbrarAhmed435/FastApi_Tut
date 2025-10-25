@@ -117,3 +117,46 @@ async def secure_upload(file:UploadFile=File(...)):
     await file.seek(0) ## file pointer moved back to begining
 
     #then procede
+    
+
+### Puting together
+
+from openai import OpenAI
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+client=OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+
+def prompt_ai(text:str):
+    
+    messages=[
+        {
+            "role":"system",
+            "content":"Give short meaningful summary of this text"
+        },
+        {
+        "role":"user",
+        "content":f"Here is the text{text}"
+        }
+    ]
+    try:
+        response=client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=messages,
+        )
+        summary=response.choices[0].message.content 
+        
+        return JSONResponse(status_code=200,content={
+            "summary":summary
+        })
+    except Exception as e:
+        print("OpneAI Error",e)
+        return JSONResponse(status_code=500,content={"error":str{e}})
+        
+
+@api.post('/summarize_doc/')
+def summarize_doc()
+        
