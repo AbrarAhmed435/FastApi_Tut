@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile,Form
+from fastapi import FastAPI, File, UploadFile,Form,HTTPException
 from fastapi.responses import JSONResponse
 
 app=FastAPI()
@@ -24,3 +24,96 @@ async def upload_with_meta(user_id:str=Form(...),description:str=Form(None),file
         "filename":file.filename,
         "size":len(content)
     }
+
+
+from typing import List
+
+@app.post('/upload-multiple/')
+async def upload_multiple(files:List[UploadFile]=File(...)):
+    results=[]
+    for f in files:
+        content=await f.read()
+        results.append({"filename":f.filename,"size":len(content)})
+    return results
+
+
+#Multiple Files
+
+import shutil
+from fastapi import BackgroundTasks
+
+def save_file_tmp(upload_file:UploadFile,dest_path:str):
+    with open(dest_path,'wb') as buffer:
+        shutil.copyfileobj(upload_file.file,buffer)
+    upload_file.file.close()
+    
+@app.post('/upload-save/')
+async def upload_save(file:UploadFile=File(...),background:BackgroundTasks=None):
+    dest=f"uploads/{file.filename}" # saving to uploading folder 
+    
+    background.add_task(save_file_tmp,file,dest) #Adding save_file_tmp as background task
+    
+    return {"message":"Saving in background","filename":file.filename}
+
+
+#PROCESSING PDF CONTENT (PyPDF2)
+
+from PyPDF2 import PdfReader
+
+@app.post('/process-pdf/')
+async def process_pdf(file:UploadFile=File(...)):
+    contents=await file.read()
+    
+    from io import BytesIO
+    reader=PdfReader(BytesIO(contents))
+    
+    text=""
+    for page in reader.pages:
+        text+=page.extract_text() or ""
+    return {"filename":file.filename,"page":len(reader.pages),"text_snippet":text[:300]}
+
+
+# PROCESSING IMAGES (PILLOW) EXAMPLE
+
+from PIL import Image
+from io import BytesIO
+
+@app.post('/process-image/')
+async def process_image(file:UploadFile=File(...)):
+    contents=await file.read()
+    img=Image.open(BytesIO(contents))
+    width,height=img.size
+    
+    img.thumbnail((256,256))
+    
+    buf=BytesIO()
+    img.save(buf,format="JPEG")
+    thumb_bytes=buf.getvalue()
+    return {
+        "filename":file.filename,
+        "width":width,
+        "height":height,
+        "thumbnail_size":len(thumb_bytes)
+    }
+    
+    
+
+#VALIDATE FILE TYPES
+MAX_FILE_SIZE=10*1024*1024 #10MB
+
+@app.post('/secure-upload/')
+async def secure_upload(file:UploadFile=File(...)):
+    
+    if file.content_type not in ('application/pdf','image/jpeg','image/png'):
+        raise HTTPException(status_code=400,detail="Unsupported file type")
+    
+    size=0
+    chunk=await file.read(1024*1024)
+    while chunk:
+        size+=len(chunk)
+        if size>MAX_FILE_SIZE:
+            raise HTTPException(status_code=413,detail="File too large")
+        chunk = await file.read(1024*1024)
+    await file.seek(0) ## file pointer moved back to begining
+
+    #then procede
