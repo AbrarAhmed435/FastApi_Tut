@@ -62,4 +62,15 @@ Content-Type: application/json
 ###
 DELETE http://127.0.0.1:8000/delete/5/ HTTP/1.1
 
+###
+POST http://127.0.0.1:8000/token HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "abrar",
+  "password": "mypassword",
+  "email": "abrar@example.com",
+  "full_name": "Abrar ul Riyaz"
+}
+
 

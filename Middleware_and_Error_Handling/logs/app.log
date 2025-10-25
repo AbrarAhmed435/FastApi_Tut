@@ -1,0 +1,20 @@
+2025-10-25 19:41:46,948 - INFO-Request: GET /docs from 127.0.0.1
+2025-10-25 19:41:46,949 - INFO-Response: GET /docs completed in 0.001s
+2025-10-25 19:41:47,214 - INFO-Request: GET /openapi.json from 127.0.0.1
+2025-10-25 19:41:47,216 - INFO-Response: GET /openapi.json completed in 0.002s
+2025-10-25 19:42:09,003 - INFO-Request: GET /hello from 127.0.0.1
+2025-10-25 19:42:09,004 - INFO-Response: GET /hello completed in 0.001s
+2025-10-25 19:42:11,751 - INFO-Request: GET /hello from 127.0.0.1
+2025-10-25 19:42:11,753 - INFO-Response: GET /hello completed in 0.001s
+2025-10-25 19:42:58,699 - INFO-Request: GET /hello from 127.0.0.1
+2025-10-25 19:42:58,700 - INFO-Response: GET /hello completed in 0.001s
+2025-10-25 19:47:40,810 - INFO-Request: GET /hello from 127.0.0.1
+2025-10-25 19:47:40,818 - INFO-Response: GET /hello completed in 0.008s
+2025-10-25 19:48:08,806 - INFO-Request: GET /helloi from 127.0.0.1
+2025-10-25 19:48:08,807 - INFO-Response: GET /helloi completed in 0.001s
+2025-10-25 19:53:55,414 - INFO-Request: GET /helloi from 127.0.0.1
+2025-10-25 19:53:55,416 - INFO-Response: GET /helloi completed in 0.002s
+2025-10-25 19:54:00,149 - INFO-Request: GET /helloi from 127.0.0.1
+2025-10-25 19:54:00,149 - INFO-Response: GET /helloi completed in 0.001s
+2025-10-25 19:54:03,989 - INFO-Request: GET /hello from 127.0.0.1
+2025-10-25 19:54:03,990 - INFO-Response: GET /hello completed in 0.001s
