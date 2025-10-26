@@ -19,10 +19,11 @@ fake_db={
         "username":"abrar",
         "full_name":"Abrar ul Riyaz",
         "email":"abrar@gmail.com",
-        "hashed_password":"",
+        "hashed_password":"$2b$12$CPzktGljw799ugJoUrg39uU0nOLgWUDFlm7Ic2IGM7NgjfQsNFKVu",
         "disable":False
     }
 }
+
 
 
 class Token(BaseModel):
@@ -58,9 +59,9 @@ def verify_password(plain_password,hashed_password):
 def get_password_hash(password):
     return pwd_context.hash(password)
 
-def get_user(db,username:str):
-    if username in db:
-        user_data=db[username]
+def get_user(fake_db,username:str):
+    if username in fake_db:
+        user_data=fake_db[username]
         return UserInDB(**user_data)
     
 def authenticate_user(db,username:str,password:str):
@@ -114,17 +115,6 @@ async def get_current_active_user(current_user,UserInDB=Depends(get_current_user
     
     return current_user
 
-
-# @app.post("/token",response_model=Token)
-# async def login_for_access_token(form_data:OAuth2PasswordRequestForm=Depends()):
-#     user=authenticate_user(db,form_data.username,form_data.password)
-#     if not user:
-#         return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="Incorrect username or password",headers={"WWW-Authenticate":"Bearer"})
-#     access_token_expires=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-#     access_token=create_access_token(data={"sub":user.username},expires_delta=access_token_expires)
-    
-#     return {"access_token":access_token,"token_type":"bearer"}
-
 @app.post("/register")
 def register_user(username:str,password:str,email:Optional[str]=None,full_name:Optional[str]=None):
     if username in fake_db:
@@ -134,7 +124,7 @@ def register_user(username:str,password:str,email:Optional[str]=None,full_name:O
     return {"msg":"User Registered Successfully"}
 
 
-@app.post("/token",response_model=Token)
+@app.post("/token",response_model=Token) 
 def login(form_data:OAuth2PasswordRequestForm=Depends()):
     user=authenticate_user(fake_db,form_data.username,form_data.password)
     if not user:
@@ -146,3 +136,8 @@ def login(form_data:OAuth2PasswordRequestForm=Depends()):
 @app.get("/me")
 def read_current_user(current_user:User=Depends(get_current_active_user)):
     return current_user
+
+
+
+pwd=get_password_hash("abrar123")
+print(pwd)
