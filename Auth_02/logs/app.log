@@ -18,3 +18,38 @@
 2025-10-26 13:14:50,590 - INFO - Response: POST /register completed in 0.229
 2025-10-26 13:15:11,721 - INFO - Request :POST /register form 127.0.0.1
 2025-10-26 13:15:11,930 - INFO - Response: POST /register completed in 0.209
+2025-10-26 20:52:39,434 - INFO - Request :GET /docs form 127.0.0.1
+2025-10-26 20:52:39,437 - INFO - Response: GET /docs completed in 0.003
+2025-10-26 20:52:39,900 - INFO - Request :GET /openapi.json form 127.0.0.1
+2025-10-26 20:52:39,914 - INFO - Response: GET /openapi.json completed in 0.014
+2025-10-26 20:52:58,160 - INFO - Request :GET /docs form 127.0.0.1
+2025-10-26 20:52:58,161 - INFO - Response: GET /docs completed in 0.001
+2025-10-26 20:52:58,248 - INFO - Request :GET /openapi.json form 127.0.0.1
+2025-10-26 20:52:58,249 - INFO - Response: GET /openapi.json completed in 0.001
+2025-10-26 21:21:10,420 - INFO - Request :POST /register form 127.0.0.1
+2025-10-26 21:21:10,431 - INFO - Response: POST /register completed in 0.011
+2025-10-26 21:21:24,017 - INFO - Request :POST /register form 127.0.0.1
+2025-10-26 21:21:24,255 - INFO - Response: POST /register completed in 0.238
+2025-10-26 22:42:44,656 - INFO - Request :GET /docs form 127.0.0.1
+2025-10-26 22:42:44,657 - INFO - Response: GET /docs completed in 0.001
+2025-10-26 22:42:44,798 - INFO - Request :GET /openapi.json form 127.0.0.1
+2025-10-26 22:42:44,805 - INFO - Response: GET /openapi.json completed in 0.007
+2025-10-26 22:43:16,489 - INFO - Request :POST /login form 127.0.0.1
+2025-10-26 22:44:17,994 - INFO - Request :POST /login form 127.0.0.1
+2025-10-26 22:44:18,237 - INFO - Response: POST /login completed in 0.244
+2025-10-26 22:44:58,273 - INFO - Request :GET /docs/me form 127.0.0.1
+2025-10-26 22:44:58,273 - INFO - Response: GET /docs/me completed in 0.000
+2025-10-26 22:44:58,319 - INFO - Request :GET /favicon.ico form 127.0.0.1
+2025-10-26 22:44:58,319 - INFO - Response: GET /favicon.ico completed in 0.000
+2025-10-26 22:46:44,175 - INFO - Request :POST /login form 127.0.0.1
+2025-10-26 22:46:44,382 - INFO - Response: POST /login completed in 0.207
+2025-10-26 22:47:57,264 - INFO - Request :GET /login form 127.0.0.1
+2025-10-26 22:47:57,265 - INFO - Response: GET /login completed in 0.000
+2025-10-26 22:48:39,647 - INFO - Request :GET /login form 127.0.0.1
+2025-10-26 22:48:39,648 - INFO - Response: GET /login completed in 0.000
+2025-10-26 22:48:47,913 - INFO - Request :GET /me form 127.0.0.1
+2025-10-26 22:48:47,916 - INFO - Response: GET /me completed in 0.003
+2025-10-26 22:48:56,894 - INFO - Request :GET /me form 127.0.0.1
+2025-10-26 22:48:56,897 - INFO - Response: GET /me completed in 0.002
+2025-10-26 22:49:02,152 - INFO - Request :GET /me form 127.0.0.1
+2025-10-26 22:49:02,153 - INFO - Response: GET /me completed in 0.001

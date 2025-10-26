@@ -12,5 +12,12 @@
         "email": "user22@example.com",
         "phone": "7115260813008551940804",
         "password": "$2b$12$C7YOX.ngTEh16m7vDnzrN.NouLAlOMWawy56vVFBeuargv/RDtCKW"
+    },
+    {
+        "first_name": "KHAN",
+        "last_name": "SAHAB",
+        "email": "use44r@example.com",
+        "phone": "50987133335",
+        "password": "$2b$12$yXMHJceXrqu5rjfr3lnBzOJRUVs6axpfsN4roqItux9rrtk14kPRK"
     }
 ]

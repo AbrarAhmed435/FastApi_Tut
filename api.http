@@ -73,4 +73,16 @@ Content-Type: application/json
   "full_name": "Abrar ul Riyaz"
 }
 
+###
+POST http://localhost:8000/login HTTP/1.1
+Content-Type:application/json
 
+{
+    "email":"use44r@example.com",
+    "password":"Abrar435@"
+}
+
+###
+GET http://localhost:8000/me HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2U0NHJAZXhhbXBsZS5jb20iLCJleHAiOjE3NjE1MDA4MDR9.EVEd34QnD4HWyKlESQVj0Nh5cS06N5oFXhc3ZY89Nh4
