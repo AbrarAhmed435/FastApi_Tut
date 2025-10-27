@@ -53,3 +53,21 @@
 2025-10-26 22:48:56,897 - INFO - Response: GET /me completed in 0.002
 2025-10-26 22:49:02,152 - INFO - Request :GET /me form 127.0.0.1
 2025-10-26 22:49:02,153 - INFO - Response: GET /me completed in 0.001
+2025-10-26 23:00:17,012 - INFO - Request :GET /me form 127.0.0.1
+2025-10-26 23:00:17,024 - INFO - Response: GET /me completed in 0.012
+2025-10-27 23:58:48,286 - INFO - Request :GET / form 127.0.0.1
+2025-10-27 23:58:48,286 - INFO - Response: GET / completed in 0.001
+2025-10-27 23:58:48,344 - INFO - Request :GET /favicon.ico form 127.0.0.1
+2025-10-27 23:58:48,344 - INFO - Response: GET /favicon.ico completed in 0.001
+2025-10-27 23:58:53,004 - INFO - Request :GET /docs form 127.0.0.1
+2025-10-27 23:58:53,005 - INFO - Response: GET /docs completed in 0.000
+2025-10-27 23:58:53,813 - INFO - Request :GET /openapi.json form 127.0.0.1
+2025-10-27 23:58:53,823 - INFO - Response: GET /openapi.json completed in 0.010
+2025-10-27 23:59:28,100 - INFO - Request :POST /register form 127.0.0.1
+2025-10-27 23:59:28,434 - INFO - Response: POST /register completed in 0.334
+2025-10-27 23:59:52,228 - INFO - Request :GET /docs form 127.0.0.1
+2025-10-27 23:59:52,228 - INFO - Response: GET /docs completed in 0.000
+2025-10-27 23:59:52,355 - INFO - Request :GET /openapi.json form 127.0.0.1
+2025-10-27 23:59:52,356 - INFO - Response: GET /openapi.json completed in 0.001
+2025-10-28 00:00:05,167 - INFO - Request :POST /login form 127.0.0.1
+2025-10-28 00:00:05,667 - INFO - Response: POST /login completed in 0.500
