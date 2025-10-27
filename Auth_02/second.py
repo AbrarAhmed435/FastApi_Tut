@@ -18,7 +18,7 @@ from database import users_collection,client #motor collection
 from dotenv import load_dotenv
 
 
-app=FastAPI()
+
 
 pwd_context=CryptContext(schemes=["bcrypt"],deprecated="auto")
 USER_FILE=Path("db.json")
@@ -28,6 +28,30 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 
 from fastapi.security import OAuth2PasswordBearer
 oauth2_scheme=OAuth2PasswordBearer(tokenUrl="token")
+
+
+
+
+from contextlib import asynccontextmanager  
+
+
+asynccontextmanager
+async def lifespan(app:FastAPI):
+    
+    await users_collection.create_index("email",unique=True)
+    
+    try:
+        await users_collection.database.client.server.info()
+    except Exception as e:
+        print("MongoDB connection error",e)
+        
+    yield # this line pauses here while app is running
+    
+    client.close()
+    print("Mongo connection closed")
+
+app=FastAPI(lifespan=lifespan)  
+
 
 def _truncate_password(pw:str)->str:
     return pw[:72]
@@ -104,8 +128,7 @@ def create_access_token(data:dict,expires_delta:Optional[timedelta]=None)->str:
     to_encode.update({"exp":expire})
     token=jwt.encode(to_encode,SECRET_KEY,algorithm=ALGORITHM)
     return token
-    
-from contextlib import asynccontextmanager    
+      
     
 # @app.on_event("startup")
 # asynccontextmanager
@@ -119,20 +142,10 @@ from contextlib import asynccontextmanager
 #         print("MongoDB connection error:",e)
         
         
-asynccontextmanager
-async def lifespan(app:FastAPI):
+
     
-    await users_collection.create_index("email",unique=True)
     
-    try:
-        await users_collection.database.client.server.info()
-    except Exception as e:
-        print("MongoDB connection error",e)
-        
-    yield # this lien pauses here while app is running
     
-    client.close()
-    print("Mongo connection closed")
 
 def load_users():
     if not USER_FILE.exists():

@@ -77,3 +77,5 @@
 2025-10-28 00:17:51,585 - INFO - Response: POST /register completed in 0.309
 2025-10-28 00:18:43,929 - INFO - Request :POST /register form 127.0.0.1
 2025-10-28 00:18:46,104 - INFO - Response: POST /register completed in 2.175
+2025-10-28 00:32:06,528 - INFO - Request :POST /register form 127.0.0.1
+2025-10-28 00:32:08,741 - INFO - Response: POST /register completed in 2.213
