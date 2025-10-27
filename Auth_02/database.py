@@ -23,7 +23,7 @@ users_collection=db["users"]
 2. Creates an asynchronous connection to MongoDB using Motor (AsyncIOMotorClient).
 3. Motor is the async driver for MongoDB built on top of PyMongo.
 4. The connection is non-blocking — ideal for async frameworks like FastAPI.
-5. serverSelectionTimeoutMS=5000 ensures the client fails fast if the DB is unreachable.
+5. serverSelectionTimeoutMS=5000(5sec) ensures the client fails fast if the DB is unreachable.
 6. Accesses or auto-creates the database named "fastapi_auth_db" inside the cluster.
 7. Accesses or auto-creates the "users" collection where all user data will be stored.
 8. Collections in MongoDB are schema-less — documents (records) can have flexible fields.

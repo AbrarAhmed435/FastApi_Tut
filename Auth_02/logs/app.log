@@ -71,3 +71,9 @@
 2025-10-27 23:59:52,356 - INFO - Response: GET /openapi.json completed in 0.001
 2025-10-28 00:00:05,167 - INFO - Request :POST /login form 127.0.0.1
 2025-10-28 00:00:05,667 - INFO - Response: POST /login completed in 0.500
+2025-10-28 00:17:40,460 - INFO - Request :POST /register form 127.0.0.1
+2025-10-28 00:17:43,180 - INFO - Response: POST /register completed in 2.720
+2025-10-28 00:17:51,275 - INFO - Request :POST /register form 127.0.0.1
+2025-10-28 00:17:51,585 - INFO - Response: POST /register completed in 0.309
+2025-10-28 00:18:43,929 - INFO - Request :POST /register form 127.0.0.1
+2025-10-28 00:18:46,104 - INFO - Response: POST /register completed in 2.175

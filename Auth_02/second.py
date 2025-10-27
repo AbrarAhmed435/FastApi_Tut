@@ -13,7 +13,8 @@ from logger_config import logger
 import re
 import os
 
-from database import users_collection #motor collection
+from database import users_collection,client #motor collection
+
 from dotenv import load_dotenv
 
 
@@ -104,15 +105,34 @@ def create_access_token(data:dict,expires_delta:Optional[timedelta]=None)->str:
     token=jwt.encode(to_encode,SECRET_KEY,algorithm=ALGORITHM)
     return token
     
-@app.on_event("startup")
-async def startup_event():
-    #enuser unique index on email
+from contextlib import asynccontextmanager    
+    
+# @app.on_event("startup")
+# asynccontextmanager
+# async def startup_event():
+#     #enuser unique index on email
+#     await users_collection.create_index("email",unique=True)
+#     #OPTIONAL: checking connection with DB
+#     try:
+#         await users_collection.database.client.server_info()
+#     except Exception as e:
+#         print("MongoDB connection error:",e)
+        
+        
+asynccontextmanager
+async def lifespan(app:FastAPI):
+    
     await users_collection.create_index("email",unique=True)
-    #OPTIONAL: checking connection with DB
+    
     try:
-        await users_collection.database.client.server_info()
+        await users_collection.database.client.server.info()
     except Exception as e:
-        print("MongoDB connection error:",e)
+        print("MongoDB connection error",e)
+        
+    yield # this lien pauses here while app is running
+    
+    client.close()
+    print("Mongo connection closed")
 
 def load_users():
     if not USER_FILE.exists():
@@ -135,7 +155,7 @@ def save_users(users_list):
 
 @app.post('/register')
 async def register(user:User):
-    user_dict=user.dict()
+    user_dict=user.model_dump()
     hashed=pwd_context.hash(_truncate_password(user.password))
     user_dict["password"]=hashed
     user_dict["created_at"]=datetime.utcnow()
