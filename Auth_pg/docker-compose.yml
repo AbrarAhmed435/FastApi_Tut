@@ -1,0 +1,53 @@
+# This Docker Compose file sets up a complete PostgreSQL environment
+# with a web-based admin tool (pgAdmin). Both run in isolated containers
+# but can communicate through Docker's internal network.
+
+version: '3.8'
+
+services:
+  # -------------------------------
+  # PostgreSQL Database Service
+  # -------------------------------
+  postgres:
+    image: postgres:15                 # Use official PostgreSQL version 15 image
+    container_name: fastapi_postgres   # Name for easy reference when running commands
+
+    environment:
+      POSTGRES_USER: abrar             # Username for connecting to the database
+      POSTGRES_PASSWORD: mysecretpassword   # Password for the above user
+      POSTGRES_DB: fastapi_auth_db     # Database name to be created automatically
+
+    ports:
+      - "5432:5432"                    # Exposes PostgreSQL on localhost:5432 → container:5432
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data # Persists data even if the container is removed
+
+    restart: unless-stopped            # Automatically restarts the container if it crashes
+
+
+  # -------------------------------
+  # pgAdmin Service
+  # -------------------------------
+  pgadmin:
+    image: dpage/pgadmin4              # Web-based PostgreSQL administration tool
+    container_name: pgadmin
+
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com  # Login email for pgAdmin web UI
+      PGADMIN_DEFAULT_PASSWORD: admin         # Login password for pgAdmin web UI
+
+    ports:
+      - "5050:80"                     # Expose pgAdmin on localhost:5050 → container:80
+
+    depends_on:
+      - postgres                      # Ensures PostgreSQL starts before pgAdmin
+
+    restart: unless-stopped            # Keeps pgAdmin running unless stopped manually
+
+
+# -------------------------------
+# Named Volume Configuration
+# -------------------------------
+volumes:
+  pgdata:                              # Docker-managed volume for PostgreSQL data persistence
