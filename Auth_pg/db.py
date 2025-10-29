@@ -42,7 +42,7 @@ engine = create_async_engine(DATABASE_URL, echo=False, future=True)
 # ----------------------------------------------------------
 # Sessions represent “conversations” with the database.
 # Each request to our FastAPI app will use its own session.
-#   - bind=engine        : connects the session to our database engine
+#   - bind=engine        : session to ouconnects the r database engine
 #   - class_=AsyncSession: makes it asynchronous
 #   - expire_on_commit=False : objects remain usable after commit
 AsyncSessionLocal = sessionmaker(

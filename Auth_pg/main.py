@@ -93,7 +93,7 @@ async def register(user_in: UserCreate, session=Depends(get_async_session)):
     # Step 2️⃣ : Create a new `User` ORM instance
     # --------------------------------------------------------
     # This object represents a single row in the `users` table.
-    user = User(
+    user = User(                        #User is database user in models.py
         first_name=user_in.first_name,
         last_name=user_in.last_name,
         email=user_in.email,
