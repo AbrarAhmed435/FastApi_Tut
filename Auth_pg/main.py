@@ -26,6 +26,8 @@ ACCESS_TOKEN_EXPIRE_MINUTES=int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES","30"))
 pwd_context=CryptContext(schemes=["bcrypt"],deprecated="auto")
 
 oauth2_scheme=OAuth2PasswordBearer(tokenUrl="token")
+
+
 """ 
 It’s a FastAPI dependency class that tells your app:
 
@@ -35,6 +37,12 @@ e.g.,  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 """
 
 app=FastAPI()
+
+from routes import posts
+
+app.include_router(posts.router, prefix="/posts", tags=["Posts"])
+# app.include_router(auth.router, prefix="/auth", tags=["Auth"])
+
 
 
 def _truncate_password(pw:str)->str:
@@ -50,6 +58,7 @@ def verify_password(plain_password:str,hashed_password:str)->bool:
 def create_access_token(data:dict,expires_delta:timedelta|None=None)->str:
     to_encode=data.copy()
     expire=datetime.utcnow()+(expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    to_encode.update({"exp":expire})
     token=jwt.encode(to_encode,SECRET_KEY,algorithm=ALGORITHM)
     return token
 
@@ -150,7 +159,34 @@ async def login(login_in:LoginIn,session=Depends(get_async_session)):
     if not verify_password(login_in.password,user.hashed_password):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="Invalid Credentials")
     access_token=create_access_token({"sub":user.email})
+    refresh_token=create_access_token(
+        {"sub":user.email, "type":"refresh"},
+        expires_delta=timedelta(days=7)
+    )
     return {
         "access_token":access_token,
+        "refresh_token":refresh_token,
         "token_type":"bearer"
     }
+    
+
+@app.post("/refresh")
+async def refresh_token(token:str=Depends(oauth2_scheme)):
+    try:
+        payload=jwt.decode(token,SECRET_KEY,algorithms=[ALGORITHM])
+        if payload.get("type")!="refresh":
+            raise HTTPException(status_code=401,detail="Invalid token type")
+        
+        new_access_token=create_access_token(
+            {"sub":payload.get("sub")},
+            expires_delta=timedelta(minutes=30)
+        )
+        return {
+            "access_token":new_access_token,
+            "token_type":"bearer"
+        }
+        
+    except JWTError:
+        raise HTTPException(status_code=401,detail="Invalid or expired refresh token")
+
+

@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: fastapi_postgres
+
+    environment:
+      POSTGRES_USER: abrar
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: fastapi_auth_db
+    
+    ports:
+      - "5432:5432"
+    
+    volumes:
+      - pgdata:/var/lib/postgres/data
+    
+    restart: unless-stopped
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com 
+      PGADMIN_DEFAULT_PASSWORD: admin
+
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    
+    restart: unless-stopped
+
+
+volumes:
+  pgdata:

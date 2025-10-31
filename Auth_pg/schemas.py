@@ -1,5 +1,5 @@
 from pydantic import BaseModel, EmailStr,Field,field_validator
-from typing import Annotated
+from typing import Annotated,Optional
 
 class UserCreate(BaseModel):
     first_name:Annotated[str,Field(...,max_length=50)]
@@ -82,6 +82,23 @@ model_config = {"from_attributes": True}
     """
     
     
+# ============================
+# 🧾 Post Schemas
+# ============================
+from datetime import datetime
 
+class PostCreate(BaseModel):
+    title:Annotated[str,Field(...,max_length=255)]
+    description:str
+    image_url:Optional[str]=None
 
-
+class PostOut(BaseModel):
+    id:int
+    title:str
+    description:str
+    image_url:Optional[str]
+    created_at: datetime
+    user_id:int
+    
+    model_config={"from_attributes":True}
+    

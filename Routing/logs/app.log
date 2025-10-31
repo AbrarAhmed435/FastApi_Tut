@@ -1,0 +1,20 @@
+2025-10-31 00:36:52,264 - INFO - \u27a1\ufe0fRequest: GET /docs
+2025-10-31 00:36:52,312 - INFO - \u27a1\ufe0fRequest: GET /favicon.ico
+2025-10-31 00:37:18,903 - INFO - \u27a1\ufe0fRequest: GET /docs
+2025-10-31 00:37:18,904 - INFO - \u2b05\ufe0f Response: GET /docs |Status:200 | Time:1.15ms | IP:127.0.0.1
+2025-10-31 00:37:19,204 - INFO - \u27a1\ufe0fRequest: GET /openapi.json
+2025-10-31 00:37:19,218 - INFO - \u2b05\ufe0f Response: GET /openapi.json |Status:200 | Time:13.83ms | IP:127.0.0.1
+2025-10-31 00:37:36,385 - INFO - \u27a1\ufe0fRequest: GET /docs
+2025-10-31 00:37:36,386 - INFO - \u2b05\ufe0f Response: GET /docs |Status:200 | Time:0.98ms | IP:127.0.0.1
+2025-10-31 00:37:36,493 - INFO - \u27a1\ufe0fRequest: GET /openapi.json
+2025-10-31 00:37:36,495 - INFO - \u2b05\ufe0f Response: GET /openapi.json |Status:200 | Time:2.83ms | IP:127.0.0.1
+2025-10-31 00:37:54,524 - INFO - \u27a1\ufe0fRequest: POST /auth/register
+2025-10-31 00:37:54,548 - INFO - \u2b05\ufe0f Response: POST /auth/register |Status:422 | Time:24.58ms | IP:127.0.0.1
+2025-10-31 00:40:51,220 - INFO - Request: GET /doc
+2025-10-31 00:40:51,221 - INFO -  Response: GET /doc |Status:404 | Time:1.00ms | IP:127.0.0.1
+2025-10-31 00:40:51,315 - INFO - Request: GET /favicon.ico
+2025-10-31 00:40:51,316 - INFO -  Response: GET /favicon.ico |Status:404 | Time:1.08ms | IP:127.0.0.1
+2025-10-31 00:43:53,508 - INFO - Request: GET /docs
+2025-10-31 00:43:53,509 - INFO -  Response: GET /docs |Status:200 | Time:0.59ms | IP:127.0.0.1
+2025-10-31 00:43:53,644 - INFO - Request: GET /openapi.json
+2025-10-31 00:43:53,651 - INFO -  Response: GET /openapi.json |Status:200 | Time:7.11ms | IP:127.0.0.1
