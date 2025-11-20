@@ -37,7 +37,7 @@ def GetPatient(id:int=Path(...,description="id of patient(interger)",ge=0,le=100
 
 
 @app.get('/sort')
-def sort_patient(sort_by:str=Query(...,description="Sort on the basis of height,weight,bmi"),order:str=Query('asc',description="Sort in asc or desc order")):
+def sort_patient(sort_by:str=Query(...,description="Sort on the basis of height,weight or bmi"),order:str=Query('asc',description="Sort in asc or desc order")):
     valid_fields=['height_cm','weight_kg','bmi']
     if sort_by not  in valid_fields:
         raise HTTPException(status_code=400,detail=f"Invalid field select from {valid_fields}")
