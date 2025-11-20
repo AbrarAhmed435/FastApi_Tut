@@ -18,3 +18,39 @@
 2025-10-31 00:43:53,509 - INFO -  Response: GET /docs |Status:200 | Time:0.59ms | IP:127.0.0.1
 2025-10-31 00:43:53,644 - INFO - Request: GET /openapi.json
 2025-10-31 00:43:53,651 - INFO -  Response: GET /openapi.json |Status:200 | Time:7.11ms | IP:127.0.0.1
+2025-10-31 20:12:10,290 - INFO - Request: GET /docs
+2025-10-31 20:12:10,292 - INFO -  Response: GET /docs |Status:200 | Time:1.79ms | IP:127.0.0.1
+2025-10-31 20:12:10,456 - INFO - Request: GET /openapi.json
+2025-10-31 20:12:10,476 - INFO -  Response: GET /openapi.json |Status:200 | Time:20.44ms | IP:127.0.0.1
+2025-10-31 20:12:24,748 - INFO - Request: GET /posts/
+2025-10-31 20:12:24,787 - INFO -  Response: GET /posts/ |Status:200 | Time:38.72ms | IP:127.0.0.1
+2025-10-31 22:02:55,112 - INFO - Request: GET /docs
+2025-10-31 22:02:55,112 - INFO -  Response: GET /docs |Status:200 | Time:0.76ms | IP:127.0.0.1
+2025-10-31 22:02:57,583 - INFO - Request: GET /openapi.json
+2025-10-31 22:02:57,595 - INFO -  Response: GET /openapi.json |Status:200 | Time:12.10ms | IP:127.0.0.1
+2025-10-31 22:46:18,035 - INFO - Request: POST /posts/
+2025-10-31 22:46:18,039 - INFO -  Response: POST /posts/ |Status:422 | Time:3.41ms | IP:127.0.0.1
+2025-10-31 22:51:34,512 - INFO - Request: POST /posts/
+2025-10-31 22:51:34,513 - INFO -  Response: POST /posts/ |Status:422 | Time:1.27ms | IP:127.0.0.1
+2025-10-31 22:51:40,597 - INFO - Request: POST /posts/
+2025-10-31 22:51:40,598 - INFO -  Response: POST /posts/ |Status:422 | Time:1.01ms | IP:127.0.0.1
+2025-10-31 22:53:30,100 - INFO - Request: GET /docs
+2025-10-31 22:53:30,101 - INFO -  Response: GET /docs |Status:200 | Time:0.65ms | IP:127.0.0.1
+2025-10-31 22:53:30,233 - INFO - Request: GET /openapi.json
+2025-10-31 22:53:30,246 - INFO -  Response: GET /openapi.json |Status:200 | Time:13.30ms | IP:127.0.0.1
+2025-10-31 22:54:04,739 - INFO - Request: POST /posts/
+2025-10-31 22:54:04,760 - INFO -  Response: POST /posts/ |Status:500 | Time:20.35ms | IP:127.0.0.1
+2025-10-31 22:54:18,807 - INFO - Request: POST /posts/
+2025-10-31 22:54:18,825 - INFO -  Response: POST /posts/ |Status:500 | Time:17.98ms | IP:127.0.0.1
+2025-10-31 22:56:19,491 - INFO - Request: POST /posts/
+2025-10-31 22:56:19,537 - INFO -  Response: POST /posts/ |Status:500 | Time:45.68ms | IP:127.0.0.1
+2025-10-31 22:56:34,691 - INFO - Request: POST /posts/
+2025-10-31 22:56:34,722 - INFO -  Response: POST /posts/ |Status:500 | Time:31.41ms | IP:127.0.0.1
+2025-10-31 22:58:23,887 - INFO - Request: GET /docs
+2025-10-31 22:58:23,888 - INFO -  Response: GET /docs |Status:200 | Time:0.61ms | IP:127.0.0.1
+2025-10-31 22:58:24,051 - INFO - Request: GET /openapi.json
+2025-10-31 22:58:24,058 - INFO -  Response: GET /openapi.json |Status:200 | Time:6.32ms | IP:127.0.0.1
+2025-10-31 22:58:47,036 - INFO - Request: POST /posts/
+2025-10-31 22:58:47,077 - INFO -  Response: POST /posts/ |Status:500 | Time:41.72ms | IP:127.0.0.1
+2025-10-31 22:59:07,487 - INFO - Request: POST /posts/
+2025-10-31 22:59:07,525 - INFO -  Response: POST /posts/ |Status:201 | Time:37.29ms | IP:127.0.0.1

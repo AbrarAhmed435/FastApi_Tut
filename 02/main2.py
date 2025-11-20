@@ -20,7 +20,7 @@ def LoadPatient(id):
 
 @app.get("/")
 def PatientData():
-    return {"Message":"Patient Management System API"}
+    return {"Message":"Patient Management System-API"}
 
 
 @app.get("/view")
