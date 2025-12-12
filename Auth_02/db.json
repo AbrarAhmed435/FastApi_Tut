@@ -19,5 +19,19 @@
         "email": "use44r@example.com",
         "phone": "50987133335",
         "password": "$2b$12$yXMHJceXrqu5rjfr3lnBzOJRUVs6axpfsN4roqItux9rrtk14kPRK"
+    },
+    {
+        "first_name": "STRIFNG",
+        "last_name": "STRFING",
+        "email": "usesr@example.com",
+        "phone": "825855344952454",
+        "password": "$2b$12$bIvw5PiB0RF2K9rqxWhmbOPzFbDAhZK1UiuFc4UvQ3Lts4i6hsQ1m"
+    },
+    {
+        "first_name": "STRIFFNG",
+        "last_name": "STRFIFNG",
+        "email": "usefsr@example.com",
+        "phone": "825855344952454",
+        "password": "$2b$12$B5gwMWpAxcF5t5AMZydWS.o3auUMmIfLgzc6KLUWsXXXBdgurUtvi"
     }
 ]

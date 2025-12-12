@@ -18,7 +18,6 @@ logging.basicConfig(
     handlers=[handler],
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s-%(message)s",
-    
 )
 
 
