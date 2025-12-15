@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
+from fastapi.responses import JSONResponse
 
 from ..ai_generator import generate_challenge_with_ai
 from ..database.db import (
@@ -78,6 +79,8 @@ async def my_history(request: Request, db: Session = Depends(get_db)):
     return {"challenges": challenges}
 
 
+
+
 @router.get("/quota")
 async def get_quota(request: Request, db: Session = Depends(get_db)):
     user_details = authenticate_and_get_user_details(request)
@@ -87,7 +90,7 @@ async def get_quota(request: Request, db: Session = Depends(get_db)):
     if not quota:
         return {
             "user_id": user_id,
-            "quota_remaining": 100,
+            "quota_remaining": 0,
             "last_reset_date": datetime.now()
         }
 
