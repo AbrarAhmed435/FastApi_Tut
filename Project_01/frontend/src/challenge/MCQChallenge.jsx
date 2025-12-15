@@ -1,12 +1,17 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 export function MCQChallenge({ challenge, showExplanation = false }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [shouldShowExplanation, setShouldShowExplanation] =
     useState(showExplanation);
 
-  const option =
+    useEffect(() => {
+    setSelectedOption(null);
+    setShouldShowExplanation(showExplanation);
+  }, [challenge, showExplanation]);
+
+  const options =
     typeof challenge.options === "string"
       ? JSON.parse(challenge.options)
       : challenge.options;
@@ -25,26 +30,27 @@ export function MCQChallenge({ challenge, showExplanation = false }) {
     if (selectedOption === index && index !== challenge.correct_answer_id) {
       return "option incorrect";
     }
+    // setSelectedOption(null)
     return "option";
   };
 
   return (
     <div>
       <p>
-        <strong>Difficulty</strong>
+        <strong>Difficulty{" "}</strong>
         {challenge.difficulty}
       </p>
       <p className="challenge-title">{challenge.title}</p>
       <div className="options">
-        {options.map((option, index) => {
+        {options.map((option, index) => (
           <div
             className={getOptionClass(index)}
             key={index}
             onClick={() => handleOptionSelect(index)}
           >
             {option}
-          </div>;
-        })}
+          </div>
+        ))}
       </div>
       {shouldShowExplanation && selectedOption !== null && (
         <div className="explanation">
